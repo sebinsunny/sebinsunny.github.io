@@ -79,9 +79,8 @@
 
 
 <body>
-<style>
 
-</style>
+
 <div class='fullscreenDiv'>
 <div class="centerCover">
 <div class="center" id="center">
@@ -93,19 +92,30 @@
 <span class="socialFeild"><a href="http://www.soundcloud.com/sebin-sunny-3"><img src="img/soundcloud.png"/></a></span> 
 <span class="socialFeild"><a href="http://www.instagram.com/"><img src="img/instagram.png"/></a></span>
 </p>
+
 </div>
 </div>
 </div>​
+
 <img id="y" src="" class="imgs" alt="" width="600" height="600"/>
-<h1 class="title" id="title" align="center"></h1>
-<h1 class="title" id="art" align="center"></h1>
+
+<h1 id="titles" align="center"></h1>
+
+<h1 id="art" align="center"></h1>
+
 
 
 
 <script src="https://sdk.scdn.co/spotify-player.js"></script>
+
+
   <script>
+  var url_string = window.location.href
+  var url = new URL(url_string);
+  const c = url.searchParams.get("id");
     window.onSpotifyWebPlaybackSDKReady = () => {
-      const token = 'BQCntr9jSCGUMIAI9O4U8doiKyr444nrw0ZlIOOW8XweTRTVo4dachfCj46giWtBC8gvTRu_fP1bUKuhZEL4aMIakCgjPwGzPnNN8JPA2ImF6hQOpMo23WzD2Z7lvVKk70JBpl9uDLV6cOQ13byaxq3XN9DrLAe80TeSk4I';
+      const token = c;
+      console.log(c);
       const player = new Spotify.Player({
         name: 'Web Playback SDK Quick Start Player',
         getOAuthToken: cb => { cb(token); }
@@ -123,8 +133,9 @@
       str1 = JSON.parse(str);
       name = str1.track_window.current_track.album.name
       artist = str1.track_window.current_track.artists[0].name
-      image=str1.track_window.current_track.album.images[2].url
+      image = str1.track_window.current_track.album.images[2].url
       document.getElementById("title").innerHTML = name;
+      document.getElementById("titles").innerHTML = name;
       document.getElementById("art").innerHTML = artist;
       document.getElementById("y").src = image;
       });
